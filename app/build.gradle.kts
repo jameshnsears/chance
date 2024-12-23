@@ -95,6 +95,15 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        if (System.getProperty("idea.active") == "true") {
+            println("Enable coroutine debugging")
+            freeCompilerArgs.add("-Xdebug")
+        }
+    }
+}
+
 dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.compose.ui.test.manifest)
