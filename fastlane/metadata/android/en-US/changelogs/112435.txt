@@ -1,0 +1,3 @@
+&bull; Align changelogs with versionCode, for fastlane
+&bull; Improve README formatting
+&bull; Stop IDE optimising out debug vars
