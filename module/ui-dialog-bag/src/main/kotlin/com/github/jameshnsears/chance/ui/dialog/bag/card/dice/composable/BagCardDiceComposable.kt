@@ -219,17 +219,6 @@ fun DiceTitle(cardDiceViewModel: CardDiceViewModel) {
             text = stringResource(R.string.dialog_bag_dice_title_info),
         )
     }
-
-    Row(
-        modifier = Modifier
-            .padding(top = 8.dp, bottom = 8.dp)
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = stringResource(R.string.dialog_bag_dice_title_clone),
-        )
-    }
 }
 
 @Composable
