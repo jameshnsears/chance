@@ -144,19 +144,22 @@ private fun RollExplode(cardRollViewModel: CardRollViewModel) {
             .testTag(BagCardRollTestTag.ROLL_EXPLODE),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(start = 12.dp)
+        ) {
+            Icon(
+                painterResource(id = com.github.jameshnsears.chance.common.R.drawable.roll_explode_fill0_wght400_grad0_opsz24),
+                contentDescription = "",
+                modifier = Modifier.size(24.dp),
+            )
+
             Checkbox(
                 checked = rollExplode,
                 onCheckedChange = {
                     rollExplode = it
                     cardRollViewModel.rollExplode(it)
                 }
-            )
-
-            Icon(
-                painterResource(id = com.github.jameshnsears.chance.common.R.drawable.roll_explode_fill0_wght400_grad0_opsz24),
-                contentDescription = "",
-                modifier = Modifier.size(24.dp),
             )
 
             Spacer(Modifier.size(ButtonDefaults.IconSpacing))
@@ -250,23 +253,23 @@ fun RollScore(cardRollViewModel: CardRollViewModel) {
 
     Row(
         modifier = Modifier
-            .padding(top = 8.dp, bottom = 8.dp)
+            .padding(start = 12.dp, top = 8.dp, bottom = 8.dp)
             .fillMaxWidth()
             .testTag(BagCardRollTestTag.ROLL_MODIFY_SCORE),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        Icon(
+            painterResource(id = com.github.jameshnsears.chance.common.R.drawable.roll_add_subtract_fill0_wght400_grad0_opsz24),
+            contentDescription = "",
+            modifier = Modifier.size(24.dp),
+        )
+
         Checkbox(
             checked = rollModifyScore,
             onCheckedChange = {
                 rollModifyScore = it
                 cardRollViewModel.rollModifyScore(it)
             }
-        )
-
-        Icon(
-            painterResource(id = com.github.jameshnsears.chance.common.R.drawable.roll_add_subtract_fill0_wght400_grad0_opsz24),
-            contentDescription = "",
-            modifier = Modifier.size(24.dp),
         )
 
         Spacer(Modifier.size(ButtonDefaults.IconSpacing))
