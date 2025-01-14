@@ -37,11 +37,6 @@ fun DialogBagTabLayout(
     showDialog: MutableState<Boolean>,
     dialogBagAndroidViewModel: DialogBagAndroidViewModel
 ) {
-    val stateFlowCardDice =
-        dialogBagAndroidViewModel.cardDiceViewModel.stateFlowCardDice.collectAsStateWithLifecycle(
-            lifecycleOwner = LocalLifecycleOwner.current
-        )
-
     var selectedTabIndex by remember { mutableStateOf(0) }
 
     val tabs = listOf(
@@ -142,20 +137,20 @@ fun DialogBagTabContent(
 //            TextButtonSave(diceCanBeSaved, dialogBagAndroidViewModel, showDialog)
 //        }
 
-        Row {
-            Text("hello")
-        }
+//        Row {
+//            Text("hello")
+//        }
 
-        Column(
-            modifier = Modifier
-                .padding(start = 8.dp, end = 8.dp),
-        ) {
+//        Column(
+//            modifier = Modifier
+//                .padding(start = 8.dp, end = 8.dp),
+//        ) {
             when (selectedTabIndex) {
                 0 -> DiceContent(modifier, dialogBagAndroidViewModel)
                 1 -> SideContent(modifier, dialogBagAndroidViewModel)
                 2 -> BehaviourContent(modifier, dialogBagAndroidViewModel)
             }
-        }
+//        }
     }
 }
 
