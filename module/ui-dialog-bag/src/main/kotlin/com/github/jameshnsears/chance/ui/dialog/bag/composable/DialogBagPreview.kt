@@ -54,10 +54,14 @@ fun DialogBagPreview() {
         Surface(
             color = MaterialTheme.colorScheme.background,
         ) {
-            DialogBagLayout(
-                showDialog,
+            DialogBagTabLayout(
                 dialogBagAndroidViewModel,
             )
+
+//            DialogBagLayout(
+//                showDialog,
+//                dialogBagAndroidViewModel,
+//            )
         }
     }
 }

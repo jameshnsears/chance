@@ -7,6 +7,7 @@
     <string name="dialog.bag.delete.confirmation.ok">OK</string>
     <string name="dialog.bag.delete.confirmation.cancel">Cancel</string>
 
+    <string name="dialog.bag.side.title">Side</string>
     <string name="dialog.bag.side">Side # </string>
     <string name="dialog.bag.side.colour">Side #…</string>
     <string name="dialog.bag.side.colour.apply.to.all">Apply colour to all side #\'s</string>
