@@ -58,23 +58,13 @@ fun BagCardDice(
 ) {
     OutlinedCard(
         modifier = Modifier
-            .padding(top = 24.dp, bottom = 24.dp)
+            .padding(top = 12.dp, bottom = 12.dp)
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp,
         ),
     ) {
         Column(modifier = Modifier.padding(18.dp)) {
-            Text(
-                text = stringResource(R.string.dialog_bag_dice),
-                modifier = Modifier
-                    .padding(top = 8.dp, bottom = 8.dp)
-                    .wrapContentSize(Alignment.Center),
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp,
-            )
-
             DiceTitle(cardDiceViewModel)
 
             HorizontalDivider(

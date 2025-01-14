@@ -3,12 +3,16 @@ package com.github.jameshnsears.chance.ui.dialog.bag.composable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -19,7 +23,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusTarget
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -37,7 +43,7 @@ fun DialogBagTabLayout(
     showDialog: MutableState<Boolean>,
     dialogBagAndroidViewModel: DialogBagAndroidViewModel
 ) {
-    var selectedTabIndex by remember { mutableStateOf(0) }
+    var selectedTabIndex by remember { mutableStateOf(2) }
 
     val tabs = listOf(
         TabItem(
@@ -56,29 +62,26 @@ fun DialogBagTabLayout(
         )
     )
 
-    Scaffold(
-        topBar = {
-            TabRow(selectedTabIndex = selectedTabIndex) {
-                tabs.forEachIndexed { index, tab ->
-                    Tab(
-                        selected = selectedTabIndex == index,
-                        onClick = { selectedTabIndex = index },
-                        icon = {
-                            Icon(
-                                imageVector = tab.icon,
-                                contentDescription = tab.title
-                            )
-                        },
-                        text = { Text(tab.title) }
-                    )
-                }
+    Column {
+        TabRow(selectedTabIndex = selectedTabIndex) {
+            tabs.forEachIndexed { index, tab ->
+                Tab(
+                    selected = selectedTabIndex == index,
+                    onClick = { selectedTabIndex = index },
+                    icon = {
+                        Icon(
+                            imageVector = tab.icon,
+                            contentDescription = tab.title
+                        )
+                    },
+                    text = { Text(tab.title) }
+                )
             }
         }
-    ) { innerPadding ->
+
         DialogBagTabContent(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
+                .fillMaxSize(),
             dialogBagAndroidViewModel,
             selectedTabIndex = selectedTabIndex,
             showDialog,
@@ -107,50 +110,31 @@ fun DialogBagTabContent(
 
     Column(
         modifier = Modifier
-            .padding(8.dp)
+            .padding(top = 12.dp, start = 12.dp, end = 12.dp)
             .fillMaxSize()
             .fillMaxWidth()
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Top,
     ) {
-//        Row(
-//            verticalAlignment = Alignment.CenterVertically,
-//            modifier = Modifier
-//                .focusTarget()
-//                .padding(top = 4.dp, end = 4.dp),
-//        ) {
-//            IconButton(onClick = {
-//                showDialog.value = false
-//            }) {
-//                Icon(
-//                    imageVector = Icons.Outlined.Close,
-//                    contentDescription = "",
-//                )
-//            }
-//
-//            Spacer(Modifier.weight(1f))
-//
-//            TextButtonDelete(diceCanBeDeleted, dialogBagAndroidViewModel, showDialog)
-//
-//            TextButtonClone(diceCanBeCloned, dialogBagAndroidViewModel, showDialog)
-//
-//            TextButtonSave(diceCanBeSaved, dialogBagAndroidViewModel, showDialog)
-//        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .focusTarget()
+                .padding(end = 4.dp),
+        ) {
+            Spacer(Modifier.weight(1f))
 
-//        Row {
-//            Text("hello")
-//        }
+            TextButtonDelete(diceCanBeDeleted, dialogBagAndroidViewModel, showDialog)
 
-//        Column(
-//            modifier = Modifier
-//                .padding(start = 8.dp, end = 8.dp),
-//        ) {
+            TextButtonClone(diceCanBeCloned, dialogBagAndroidViewModel, showDialog)
+
+            TextButtonSave(diceCanBeSaved, dialogBagAndroidViewModel, showDialog)
+        }
+
             when (selectedTabIndex) {
                 0 -> DiceContent(modifier, dialogBagAndroidViewModel)
                 1 -> SideContent(modifier, dialogBagAndroidViewModel)
                 2 -> BehaviourContent(modifier, dialogBagAndroidViewModel)
             }
-//        }
     }
 }
 

@@ -58,40 +58,22 @@ fun BagCardRoll(
         ),
     ) {
         Column(modifier = Modifier.padding(18.dp)) {
-            Text(
-                text = stringResource(R.string.dialog_bag_roll),
-                modifier = Modifier
-                    .padding(top = 8.dp, bottom = 8.dp)
-                    .wrapContentSize(Alignment.Center),
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp,
-            )
+            RollMultiplier(cardRollViewModel)
 
-            Roll(cardRollViewModel)
+            HorizontalDivider(
+                modifier = Modifier
+                    .padding(top = 12.dp, bottom = 12.dp)
+            )
+            RollExplode(cardRollViewModel)
+
+            HorizontalDivider(
+                modifier = Modifier
+                    .padding(top = 12.dp, bottom = 12.dp)
+            )
+            RollScore(cardRollViewModel)
         }
     }
 }
-
-@Composable
-fun Roll(cardRollViewModel: CardRollViewModel) {
-    Column {
-        RollMultiplier(cardRollViewModel)
-
-        HorizontalDivider(
-            modifier = Modifier
-                .padding(top = 12.dp, bottom = 12.dp)
-        )
-        RollExplode(cardRollViewModel)
-
-        HorizontalDivider(
-            modifier = Modifier
-                .padding(top = 12.dp, bottom = 12.dp)
-        )
-        RollScore(cardRollViewModel)
-    }
-}
-
 @Composable
 private fun RollMultiplier(cardRollViewModel: CardRollViewModel) {
     val stateFlowCardRoll =

@@ -1,4 +1,5 @@
+&bull; Improve dice configuration dialog
 &bull; Align changelogs with versionCode, for fastlane
 &bull; Improve README formatting
 &bull; Stop IDE optimising out debug vars
-&bull; Bump dependencies
+&bull; Bump dependencies &amp; IDE: Android Studio Ladybug Feature Drop | 2024.2.2
