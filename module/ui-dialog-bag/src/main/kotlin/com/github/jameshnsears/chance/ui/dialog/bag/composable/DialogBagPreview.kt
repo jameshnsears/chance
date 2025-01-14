@@ -55,6 +55,7 @@ fun DialogBagPreview() {
             color = MaterialTheme.colorScheme.background,
         ) {
             DialogBagTabLayout(
+                showDialog,
                 dialogBagAndroidViewModel,
             )
 

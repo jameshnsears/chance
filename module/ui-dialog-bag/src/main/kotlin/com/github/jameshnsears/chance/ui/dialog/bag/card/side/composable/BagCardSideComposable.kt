@@ -372,7 +372,7 @@ fun SideImageSVG(
                     .width(180.dp)
                     .padding(top = 6.dp)
                     .testTag(BagCardSideTestTag.SIDE_IMAGE_SVG),
-                enabled = cardSideAndroidViewModel.sideImageAvailable()
+                enabled = cardSideAndroidViewModel.sideImageAvailable() && !diceSidesFewerThanSdeNumber
             ) {
                 Icon(
                     painterResource(id = R.drawable.reset_image_fill0_wght400_grad0_opsz24),

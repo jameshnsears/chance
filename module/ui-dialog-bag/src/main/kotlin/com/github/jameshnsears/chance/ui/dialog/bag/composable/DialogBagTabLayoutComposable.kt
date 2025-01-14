@@ -1,29 +1,31 @@
 package com.github.jameshnsears.chance.ui.dialog.bag.composable
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.github.jameshnsears.chance.ui.dialog.bag.DialogBagAndroidViewModel
 import com.github.jameshnsears.chance.ui.dialog.bag.R
 import com.github.jameshnsears.chance.ui.dialog.bag.card.dice.composable.BagCardDice
@@ -32,15 +34,21 @@ import com.github.jameshnsears.chance.ui.dialog.bag.card.side.composable.BagCard
 
 @Composable
 fun DialogBagTabLayout(
+    showDialog: MutableState<Boolean>,
     dialogBagAndroidViewModel: DialogBagAndroidViewModel
 ) {
+    val stateFlowCardDice =
+        dialogBagAndroidViewModel.cardDiceViewModel.stateFlowCardDice.collectAsStateWithLifecycle(
+            lifecycleOwner = LocalLifecycleOwner.current
+        )
+
     var selectedTabIndex by remember { mutableStateOf(0) }
 
     val tabs = listOf(
         TabItem(
             stringResource(R.string.dialog_bag_dice),
             ImageVector.vectorResource(R.drawable.dice)
-    ),
+        ),
 
         TabItem(
             stringResource(R.string.dialog_bag_side_title),
@@ -77,7 +85,8 @@ fun DialogBagTabLayout(
                 .fillMaxSize()
                 .padding(innerPadding),
             dialogBagAndroidViewModel,
-            selectedTabIndex = selectedTabIndex
+            selectedTabIndex = selectedTabIndex,
+            showDialog,
         )
     }
 }
@@ -86,12 +95,67 @@ fun DialogBagTabLayout(
 fun DialogBagTabContent(
     modifier: Modifier,
     dialogBagAndroidViewModel: DialogBagAndroidViewModel,
-    selectedTabIndex: Int
+    selectedTabIndex: Int,
+    showDialog: MutableState<Boolean>
 ) {
-    when (selectedTabIndex) {
-        0 -> DiceContent(modifier, dialogBagAndroidViewModel)
-        1 -> SideContent(modifier, dialogBagAndroidViewModel)
-        2 -> BehaviourContent(modifier, dialogBagAndroidViewModel)
+    val stateFlowCardDice =
+        dialogBagAndroidViewModel.cardDiceViewModel.stateFlowCardDice.collectAsStateWithLifecycle(
+            lifecycleOwner = LocalLifecycleOwner.current
+        )
+
+    val diceCanBeDeleted = stateFlowCardDice.value.diceCanBeDeleted
+
+    val diceCanBeCloned = stateFlowCardDice.value.diceCanBeCloned
+
+    val diceCanBeSaved = stateFlowCardDice.value.diceCanBeSaved
+
+
+    Column(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxSize()
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Top,
+    ) {
+//        Row(
+//            verticalAlignment = Alignment.CenterVertically,
+//            modifier = Modifier
+//                .focusTarget()
+//                .padding(top = 4.dp, end = 4.dp),
+//        ) {
+//            IconButton(onClick = {
+//                showDialog.value = false
+//            }) {
+//                Icon(
+//                    imageVector = Icons.Outlined.Close,
+//                    contentDescription = "",
+//                )
+//            }
+//
+//            Spacer(Modifier.weight(1f))
+//
+//            TextButtonDelete(diceCanBeDeleted, dialogBagAndroidViewModel, showDialog)
+//
+//            TextButtonClone(diceCanBeCloned, dialogBagAndroidViewModel, showDialog)
+//
+//            TextButtonSave(diceCanBeSaved, dialogBagAndroidViewModel, showDialog)
+//        }
+
+        Row {
+            Text("hello")
+        }
+
+        Column(
+            modifier = Modifier
+                .padding(start = 8.dp, end = 8.dp),
+        ) {
+            when (selectedTabIndex) {
+                0 -> DiceContent(modifier, dialogBagAndroidViewModel)
+                1 -> SideContent(modifier, dialogBagAndroidViewModel)
+                2 -> BehaviourContent(modifier, dialogBagAndroidViewModel)
+            }
+        }
     }
 }
 
