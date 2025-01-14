@@ -2,8 +2,8 @@
     <string name="dialog.bag.save">Save</string>
     <string name="dialog.bag.clone">Clone</string>
     <string name="dialog.bag.delete">Delete</string>
-    <string name="dialog.bag.delete.confirmation">Delete Confirmation</string>
-    <string name="dialog.bag.delete.confirmation.question">Delete will undo associated rolls!</string>
+    <string name="dialog.bag.delete.confirmation">Delete Dice</string>
+    <string name="dialog.bag.delete.confirmation.question">Also deletes associated rolls</string>
     <string name="dialog.bag.delete.confirmation.ok">OK</string>
     <string name="dialog.bag.delete.confirmation.cancel">Cancel</string>
 

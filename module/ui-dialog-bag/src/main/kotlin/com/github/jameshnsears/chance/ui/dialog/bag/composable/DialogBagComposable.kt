@@ -55,7 +55,8 @@ fun DialogBag(
         Surface(
             modifier = Modifier.fillMaxSize(),
         ) {
-            DialogBagLayout(
+//            DialogBagLayout(
+            DialogBagTabLayout(
                 showDialog,
                 DialogBagAndroidViewModel(
                     application,

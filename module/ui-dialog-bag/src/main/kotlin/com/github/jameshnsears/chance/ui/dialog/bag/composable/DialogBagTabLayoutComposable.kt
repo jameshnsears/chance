@@ -43,7 +43,7 @@ fun DialogBagTabLayout(
     showDialog: MutableState<Boolean>,
     dialogBagAndroidViewModel: DialogBagAndroidViewModel
 ) {
-    var selectedTabIndex by remember { mutableStateOf(2) }
+    var selectedTabIndex by remember { mutableStateOf(0) }
 
     val tabs = listOf(
         TabItem(
@@ -107,11 +107,9 @@ fun DialogBagTabContent(
 
     val diceCanBeSaved = stateFlowCardDice.value.diceCanBeSaved
 
-
     Column(
         modifier = Modifier
-            .padding(top = 12.dp, start = 12.dp, end = 12.dp)
-            .fillMaxSize()
+            .padding(12.dp)
             .fillMaxWidth()
             .verticalScroll(rememberScrollState()),
     ) {
@@ -130,11 +128,15 @@ fun DialogBagTabContent(
             TextButtonSave(diceCanBeSaved, dialogBagAndroidViewModel, showDialog)
         }
 
+        Row(
+            modifier = Modifier.padding(bottom = 12.dp)
+        ) {
             when (selectedTabIndex) {
                 0 -> DiceContent(modifier, dialogBagAndroidViewModel)
                 1 -> SideContent(modifier, dialogBagAndroidViewModel)
                 2 -> BehaviourContent(modifier, dialogBagAndroidViewModel)
             }
+        }
     }
 }
 
