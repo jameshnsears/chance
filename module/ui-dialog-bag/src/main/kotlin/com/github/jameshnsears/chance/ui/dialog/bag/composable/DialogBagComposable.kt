@@ -55,7 +55,6 @@ fun DialogBag(
         Surface(
             modifier = Modifier.fillMaxSize(),
         ) {
-//            DialogBagLayout(
             DialogBagTabLayout(
                 showDialog,
                 DialogBagAndroidViewModel(
@@ -65,76 +64,6 @@ fun DialogBag(
                     side,
                 ),
             )
-        }
-    }
-}
-
-@Composable
-fun DialogBagLayout(
-    showDialog: MutableState<Boolean>,
-    dialogBagAndroidViewModel: DialogBagAndroidViewModel
-) {
-    val stateFlowCardDice =
-        dialogBagAndroidViewModel.cardDiceViewModel.stateFlowCardDice.collectAsStateWithLifecycle(
-            lifecycleOwner = LocalLifecycleOwner.current
-        )
-
-    val diceCanBeDeleted = stateFlowCardDice.value.diceCanBeDeleted
-
-    val diceCanBeCloned = stateFlowCardDice.value.diceCanBeCloned
-
-    val diceCanBeSaved = stateFlowCardDice.value.diceCanBeSaved
-
-    Column(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxSize()
-            .fillMaxWidth()
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Top,
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier
-                .focusTarget()
-                .padding(top = 4.dp, end = 4.dp),
-        ) {
-            IconButton(onClick = {
-                showDialog.value = false
-            }) {
-                Icon(
-                    imageVector = Icons.Outlined.Close,
-                    contentDescription = "",
-                )
-            }
-
-            Spacer(Modifier.weight(1f))
-
-            TextButtonDelete(diceCanBeDeleted, dialogBagAndroidViewModel, showDialog)
-
-            TextButtonClone(diceCanBeCloned, dialogBagAndroidViewModel, showDialog)
-
-            TextButtonSave(diceCanBeSaved, dialogBagAndroidViewModel, showDialog)
-        }
-
-        Column(
-            modifier = Modifier
-                .padding(start = 8.dp, end = 8.dp),
-        ) {
-            BagCardSide(dialogBagAndroidViewModel.cardSideAndroidViewModel)
-
-            BagCardDice(dialogBagAndroidViewModel.cardDiceViewModel)
-
-            BagCardRoll(dialogBagAndroidViewModel.cardRollViewModel)
-        }
-
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(end = 4.dp),
-        ) {
-            Spacer(Modifier.weight(1f))
-
-            TextButtonSave(diceCanBeSaved, dialogBagAndroidViewModel, showDialog)
         }
     }
 }
