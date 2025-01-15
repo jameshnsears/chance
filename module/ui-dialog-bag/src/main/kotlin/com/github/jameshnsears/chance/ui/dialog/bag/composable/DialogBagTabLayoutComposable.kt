@@ -101,11 +101,16 @@ fun DialogBagTabContent(
             lifecycleOwner = LocalLifecycleOwner.current
         )
 
-    val diceCanBeDeleted = stateFlowCardDice.value.diceCanBeDeleted
+    var diceCanBeDeleted = stateFlowCardDice.value.diceCanBeDeleted
 
-    val diceCanBeCloned = stateFlowCardDice.value.diceCanBeCloned
+    var diceCanBeCloned = stateFlowCardDice.value.diceCanBeCloned
 
     val diceCanBeSaved = stateFlowCardDice.value.diceCanBeSaved
+
+    if (selectedTabIndex != 0) {
+        diceCanBeDeleted = false
+        diceCanBeCloned = false
+    }
 
     Column(
         modifier = Modifier
@@ -119,6 +124,15 @@ fun DialogBagTabContent(
                 .focusTarget()
                 .padding(end = 4.dp),
         ) {
+            IconButton(onClick = {
+                showDialog.value = false
+            }) {
+                Icon(
+                    imageVector = Icons.Outlined.Close,
+                    contentDescription = "",
+                )
+            }
+
             Spacer(Modifier.weight(1f))
 
             TextButtonDelete(diceCanBeDeleted, dialogBagAndroidViewModel, showDialog)
@@ -129,7 +143,7 @@ fun DialogBagTabContent(
         }
 
         Row(
-            modifier = Modifier.padding(bottom = 12.dp)
+            modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 8.dp)
         ) {
             when (selectedTabIndex) {
                 0 -> DiceContent(modifier, dialogBagAndroidViewModel)

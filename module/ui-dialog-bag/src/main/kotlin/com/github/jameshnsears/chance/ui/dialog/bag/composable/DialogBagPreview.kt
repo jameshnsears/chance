@@ -58,11 +58,6 @@ fun DialogBagPreview() {
                 showDialog,
                 dialogBagAndroidViewModel,
             )
-
-//            DialogBagLayout(
-//                showDialog,
-//                dialogBagAndroidViewModel,
-//            )
         }
     }
 }
