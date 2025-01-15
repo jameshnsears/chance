@@ -64,12 +64,12 @@ class TabBagAndroidViewModel(
 
     suspend fun exportRepositoriesAsJson(): String {
         return "[" +
-                repositorySettings.jsonExport() +
-                "," +
-                repositoryBag.jsonExport() +
-                "," +
-                repositoryRoll.jsonExport() +
-                "]"
+            repositorySettings.jsonExport() +
+            "," +
+            repositoryBag.jsonExport() +
+            "," +
+            repositoryRoll.jsonExport() +
+            "]"
     }
 
     private val _stateFlowTabBagExport = MutableStateFlow(
