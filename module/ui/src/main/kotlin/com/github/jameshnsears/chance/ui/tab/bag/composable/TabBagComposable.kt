@@ -109,7 +109,7 @@ fun TabBagBottomSheetLayout(
             .fillMaxWidth()
             .padding(8.dp)
             .padding(start = 8.dp, end = 8.dp)
-            .height(210.dp),
+            .height(310.dp),
     ) {
         Resize(
             tabBagAndroidViewModel,
@@ -129,6 +129,17 @@ fun TabBagBottomSheetLayout(
         )
 
         ImportExport(
+            bottomSheetScaffoldState,
+            tabBagAndroidViewModel,
+            zoomBagAndroidViewModel
+        )
+
+        HorizontalDivider(
+            modifier = Modifier
+                .padding(top = 12.dp, bottom = 12.dp)
+        )
+
+        ResetStorage(
             bottomSheetScaffoldState,
             tabBagAndroidViewModel,
             zoomBagAndroidViewModel
@@ -167,6 +178,39 @@ fun Resize(
             ),
             modifier = Modifier.testTag(TabBagTestTag.RESIZE)
         )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ResetStorage(
+    bottomSheetScaffoldState: BottomSheetScaffoldState,
+    tabBagAndroidViewModel: TabBagAndroidViewModel,
+    zoomBagAndroidViewModel: ZoomBagAndroidViewModel
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 8.dp, bottom = 8.dp),
+        horizontalArrangement = Arrangement.Center,
+    ) {
+        Button(
+            onClick = {
+            },
+            modifier = Modifier
+                .width(160.dp)
+                .testTag(TabBagTestTag.IMPORT),
+        ) {
+            Icon(
+                painterResource(id = R.drawable.baseline_restart_alt_24),
+                contentDescription = "",
+                modifier = Modifier.size(24.dp),
+            )
+
+            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+
+            Text(stringResource(R.string.tab_bag_reset_storage))
+        }
     }
 }
 
