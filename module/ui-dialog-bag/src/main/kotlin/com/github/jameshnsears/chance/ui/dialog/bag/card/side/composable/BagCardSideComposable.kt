@@ -161,7 +161,8 @@ fun SideColour(
         stateFlowCardSide.value.sideApplyToAllNumberColour,
         BagCardSideTestTag.SIDE_APPLY_NUMBER_COLOUR,
         cardSideAndroidViewModel::sideApplyToAllNumberColour,
-        R.string.dialog_bag_side_colour_apply_to_all
+        R.string.dialog_bag_side_colour_apply_to_all,
+        diceSidesFewerThanSdeNumber
     )
 
     if (showDialogColourPicker.value) {
@@ -245,7 +246,8 @@ fun SideDescription(
         stateFlowCardSide.value.sideApplyToAllDescription,
         BagCardSideTestTag.SIDE_APPLY_DESCRIPTION,
         cardSideAndroidViewModel::sideApplyToAllDescription,
-        R.string.dialog_bag_side_description_apply_to_all
+        R.string.dialog_bag_side_description_apply_to_all,
+        diceSidesFewerThanSdeNumber
     )
 }
 
@@ -412,7 +414,8 @@ fun SideImageSVG(
     SideApplyToAll(
         stateFlowCardSide.value.sideApplyToAllSvg,
         BagCardSideTestTag.SIDE_APPLY_SVG,
-        cardSideAndroidViewModel::sideApplyToAllSvg
+        cardSideAndroidViewModel::sideApplyToAllSvg,
+        diceSidesFewerThanSdeNumber = diceSidesFewerThanSdeNumber
     )
 
     Row(
@@ -445,6 +448,7 @@ fun SideApplyToAll(
     testTag: String,
     sideApplyToAllFunction: (Boolean) -> Unit,
     stringResourceId: Int = R.string.dialog_bag_side_image_apply_to_all,
+    diceSidesFewerThanSdeNumber: Boolean
 ) {
     val switched = rememberSaveable { mutableStateOf(sideApplyToAll) }
 
@@ -471,6 +475,7 @@ fun SideApplyToAll(
                 switched.value = it
                 sideApplyToAllFunction(switched.value)
             },
+            enabled = !diceSidesFewerThanSdeNumber
         )
     }
 }

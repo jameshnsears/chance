@@ -25,7 +25,7 @@
 
     <string name="dialog.bag.dice">Dice</string>
     <string name="dialog.bag.dice.title">Dice Title</string>
-    <string name="dialog.bag.dice.title.info">Title must be unique and a maximum of 25 characters; Change the title to enable Clone</string>
+    <string name="dialog.bag.dice.title.info">Title must be unique and a maximum of 25 characters; change the title to enable Clone</string>
     <string name="dialog.bag.dice.sides">Sides</string>
     <string name="dialog.bag.dice.sides.info">Changing the number of sides will undo associated rolls</string>
 
