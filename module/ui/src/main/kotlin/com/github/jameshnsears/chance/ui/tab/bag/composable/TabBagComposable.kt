@@ -109,7 +109,7 @@ fun TabBagBottomSheetLayout(
             .fillMaxWidth()
             .padding(8.dp)
             .padding(start = 8.dp, end = 8.dp)
-            .height(310.dp),
+            .height(290.dp),
     ) {
         Resize(
             tabBagAndroidViewModel,
@@ -198,7 +198,7 @@ fun ResetStorage(
             onClick = {
             },
             modifier = Modifier
-                .width(160.dp)
+                .width(200.dp)
                 .testTag(TabBagTestTag.IMPORT),
         ) {
             Icon(
