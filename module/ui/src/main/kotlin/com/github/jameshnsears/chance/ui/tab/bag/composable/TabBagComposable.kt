@@ -33,6 +33,8 @@ import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,6 +48,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.github.jameshnsears.chance.ui.BuildConfig
 import com.github.jameshnsears.chance.ui.R
+import com.github.jameshnsears.chance.ui.dialog.confirm.composable.DialogConfirm
 import com.github.jameshnsears.chance.ui.tab.bag.ExportImportStatus
 import com.github.jameshnsears.chance.ui.tab.bag.TabBagAndroidViewModel
 import com.github.jameshnsears.chance.ui.zoom.bag.ZoomBagAndroidViewModel
@@ -188,6 +191,8 @@ fun ResetStorage(
     tabBagAndroidViewModel: TabBagAndroidViewModel,
     zoomBagAndroidViewModel: ZoomBagAndroidViewModel
 ) {
+    val showDialogConfirm = remember { mutableStateOf(false) }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -196,6 +201,7 @@ fun ResetStorage(
     ) {
         Button(
             onClick = {
+                showDialogConfirm.value = true
             },
             modifier = Modifier
                 .width(200.dp)
@@ -211,6 +217,21 @@ fun ResetStorage(
 
             Text(stringResource(R.string.tab_bag_reset_storage))
         }
+    }
+
+    if (showDialogConfirm.value) {
+        DialogConfirm(
+            openDialog = showDialogConfirm.value,
+            onDismissRequest = {
+                showDialogConfirm.value = false
+            },
+            onConfirmation = {
+//                dialogBagAndroidViewModel.delete()
+                showDialogConfirm.value = false
+            },
+            title = stringResource(R.string.tab_bag_reset_storage),
+            text = stringResource(R.string.tab_bag_reset_storage_confirm)
+        )
     }
 }
 
