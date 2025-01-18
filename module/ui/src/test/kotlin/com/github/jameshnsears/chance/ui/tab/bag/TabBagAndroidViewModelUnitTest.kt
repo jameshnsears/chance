@@ -10,6 +10,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Test
 
 
@@ -249,6 +250,13 @@ class TabBagAndroidViewModelUnitTest : UtilityAndroidHelper() {
 
         tabBagViewModel.resizeSettings(5)
         assertEquals(5, tabBagViewModel.stateFlowResize.value)
+    }
+
+    @Test
+    fun resetStorage() {
+        val tabBagViewModel = tabBagViewModel()
+        tabBagViewModel.resetStorage()
+        fail("wip")
     }
 
     private fun tabBagViewModel(

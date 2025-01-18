@@ -53,4 +53,10 @@ class RepositoryFactory(context: Context? = null) {
             RepositoryRollProtocolBufferTestDouble.getInstance(rollHistoryDataTestDouble)
     else
         RepositoryRollProtocolBufferImpl.getInstance(context!!, rollHistoryDataImpl)
+
+    ///////////////////////////////////////////////////
+
+    fun resetStorage() {
+
+    }
 }

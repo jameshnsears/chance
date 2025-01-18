@@ -143,9 +143,7 @@ fun TabBagBottomSheetLayout(
         )
 
         ResetStorage(
-            bottomSheetScaffoldState,
-            tabBagAndroidViewModel,
-            zoomBagAndroidViewModel
+            tabBagAndroidViewModel
         )
     }
 }
@@ -187,9 +185,7 @@ fun Resize(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ResetStorage(
-    bottomSheetScaffoldState: BottomSheetScaffoldState,
     tabBagAndroidViewModel: TabBagAndroidViewModel,
-    zoomBagAndroidViewModel: ZoomBagAndroidViewModel
 ) {
     val showDialogConfirm = remember { mutableStateOf(false) }
 
@@ -204,7 +200,7 @@ fun ResetStorage(
                 showDialogConfirm.value = true
             },
             modifier = Modifier
-                .width(200.dp)
+                .width(210.dp)
                 .testTag(TabBagTestTag.IMPORT),
         ) {
             Icon(
@@ -226,7 +222,7 @@ fun ResetStorage(
                 showDialogConfirm.value = false
             },
             onConfirmation = {
-//                dialogBagAndroidViewModel.delete()
+                tabBagAndroidViewModel.resetStorage()
                 showDialogConfirm.value = false
             },
             title = stringResource(R.string.tab_bag_reset_storage),
